@@ -24,6 +24,9 @@ public class CompraAccesorios
     public string NumeroTelefono { get; set; }
     public decimal PrecioTotal { get; set; }
     public MetodoPago MetodoPago { get; set; }
+    public Cliente Cliente { get; set; }
+
+    public IList<LineasCompraAccesorios> LineasCompraAccesorios { get; set; }
 
     
 }
