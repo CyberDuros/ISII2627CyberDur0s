@@ -5,7 +5,7 @@ public class CompraModelo3D
     public CompraModelo3D(){}
 
     public CompraModelo3D(Cliente cliente, string nombreCliente, string apellidosCliente, string correoElectronico,
-        string direccionFacturacion, MetodoPago metodoPago, string? descripcion, IList<LineaCompraModelo> lineasCompra)
+        string direccionFacturacion, MetodoPago metodoPago, string? descripcion, DateTime fechaCompra, IList<LineaCompraModelo> lineasCompra)
     {
         Cliente = cliente;
         NombreCliente = nombreCliente;
@@ -15,13 +15,13 @@ public class CompraModelo3D
         MetodoPago = metodoPago;
         Descripcion = descripcion;
         LineasCompra = lineasCompra;
-        FechaCompra = DateTime.Now;
+        FechaCompra = fechaCompra;
         PrecioTotal = lineasCompra.Sum(l => l.Subtotal);
     }
  
     public int Id { get; set; }
  
-    [DataType(DataType.DateTime), Display(Name = "Fecha de compra")]
+    [DataType(System.ComponentModel.DataAnnotations.DataType.DateTime), Display(Name = "Fecha de compra")]
     [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm:ss}", ApplyFormatInEditMode = true)]
     public DateTime FechaCompra { get; set; }
  
@@ -46,7 +46,7 @@ public class CompraModelo3D
     [Display(Name = "Descripción")]
     public string? Descripcion { get; set; }
  
-    [DataType(DataType.Currency)]
+    [DataType(System.ComponentModel.DataAnnotations.DataType.Currency)]
     [Display(Name = "Precio total")]
     [Precision(10, 2)]
     public decimal PrecioTotal { get; set; }
@@ -60,7 +60,6 @@ public class CompraModelo3D
     // Relación N..1 con Cliente
     // La clave de ApplicationUser (IdentityUser) es string, por eso ClienteId es string.
     // Si se borra un cliente no se borran sus compras.
-    public string ClienteId { get; set; }
     [DeleteBehavior(DeleteBehavior.NoAction)]
     public Cliente Cliente { get; set; }
 }
