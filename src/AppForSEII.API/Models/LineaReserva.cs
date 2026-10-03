@@ -1,0 +1,33 @@
+namespace AppForSEII.API.Models
+{
+    public class LineaReserva
+    {
+        public LineaReserva() { }
+
+        public LineaReserva(TiempoReserva tiempoReserva, decimal precioSubtotal, Impresora3D impresora, ReservaImpresora reservaImpresora)
+        {
+            TiempoReserva = tiempoReserva;
+            PrecioSubtotal = precioSubtotal;
+            Impresora = impresora;
+            ReservaImpresora = reservaImpresora;
+        }
+
+        public int Id { get; set; }
+
+
+        public TiempoReserva TiempoReserva { get; set; }
+
+        [DataType(System.ComponentModel.DataAnnotations.DataType.Currency)]
+        [Range(0.5, float.MaxValue, ErrorMessage = "El valor minimo permitido es 0.5")]
+        [Display(Name = "Precio subtotal")]
+        [Precision(10, 2)]
+        public decimal PrecioSubtotal { get; set; }
+
+
+
+        public Impresora3D Impresora { get; set; }
+        public ReservaImpresora ReservaImpresora { get; set; }
+
+
+    }
+}
