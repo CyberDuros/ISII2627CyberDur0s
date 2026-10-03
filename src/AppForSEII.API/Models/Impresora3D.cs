@@ -41,7 +41,7 @@ namespace AppForSEII.API.Models
 
         public TipoImpresora Tipo {get; set;}
     
-        public LineaReserva LineaReserva {get; set;}
+        public IList<LineaReserva> LineasReserva {get; set;}
 
   
        
