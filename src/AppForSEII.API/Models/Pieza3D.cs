@@ -5,7 +5,7 @@ public class Pieza3D
     public int Id { get; set; }
 
     [StringLength(50, ErrorMessage = "El nombre debe tener entre 1 y 50 caracteres.", MinimumLength = 1)]
-    public string Nombre { get; set; }
+    public string Nombre { get; set; } = string.Empty;
 
     // Peso en gramos, con dos decimales
     [Precision(8,2)]
