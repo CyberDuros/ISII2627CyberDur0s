@@ -6,8 +6,9 @@ public class CompraAccesorios
     public CompraAccesorios()
     {
     }
-    public CompraAccesorios(DateTime fechaCompra, string nombreCliente,string apellidoCliente, string direccionEnvio,string numeroTelefono, decimal precioTotal, MetodoPago metodoPago)
+    public CompraAccesorios(Cliente cliente, DateTime fechaCompra, string nombreCliente,string apellidoCliente, string direccionEnvio,string numeroTelefono, decimal precioTotal, MetodoPago metodoPago)
     {
+        Cliente = cliente;
         FechaCompra = fechaCompra;
         NombreCliente = nombreCliente;
         ApellidoCliente = apellidoCliente;
