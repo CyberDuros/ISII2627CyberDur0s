@@ -18,6 +18,8 @@ public class Material
     [Range(0, 99999.9999, ErrorMessage = "El stock no puede ser negativo.")]
     public decimal StockGramos { get; set; }
 
+    public HashSet<Pieza3D> Piezas3D { get; set; } = new HashSet<Pieza3D>();
+
     public Material()
     {
     }
