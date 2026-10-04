@@ -46,7 +46,7 @@ public class CompraAccesorios
     
     public Cliente Cliente { get; set; }
 
-    public IList<LineasCompraAccesorios> LineasCompraAccesorios { get; set; }
+    public IList<LineaCompraAccesorio> LineasCompraAccesorios { get; set; }
 
 
     
