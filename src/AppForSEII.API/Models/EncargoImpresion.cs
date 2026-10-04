@@ -45,6 +45,9 @@ public class EncargoImpresion
     [DeleteBehavior(DeleteBehavior.NoAction)]
     public Cliente Cliente { get; set; } = null!;
 
+    // Relacion EncargoImpresion 1 <>--- 1..* lineaEncargo (contiene)
+    public IList<LineaEncargo> LineasEncargo { get; set; }
+
     public EncargoImpresion()
     {
     }
