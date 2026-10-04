@@ -41,8 +41,12 @@ namespace AppForSEII.API.Data {
                 logger.LogError(ex, "An error occurred seeding the Accesorios in the Database.");
             }
 
- 
-
+            try {
+                SeedModelos3D(dbContext);
+            }
+            catch (Exception ex) {
+                logger.LogError(ex, "Ha ocurrido un error al generar los datos de la tabla Modelo3D en la base de datos.");
+            }
         }
 
         public static void SeedRoles(RoleManager<IdentityRole> roleManager, List<string> roles) {
@@ -110,6 +114,49 @@ namespace AppForSEII.API.Data {
         }
 
 
+        //Metodo para para generar datos en la tabla Modelos3D de la base de datos
+        public static void SeedModelos3D(ApplicationDbContext dbContext)
+        {
+            //Comprobamos si ya hay modelos 3D en la base de datos, si no los hay, los creamos
+            if (!dbContext.Modelos3D.Any())
+            {
+                // Creamos las licencias de ejemplo
+                var licenciaPersonal = new LicenciaModelo3D("Licencia personal", DateTime.Today.AddYears(1));
+                var licenciaComercial = new LicenciaModelo3D("Licencia comercial", DateTime.Today.AddDays(15));
+                //Las añadimos al DbContext
+                dbContext.LicenciasModelo3D.Add(licenciaComercial);
+                dbContext.LicenciasModelo3D.Add(licenciaPersonal);
+
+                //A la misma vez que creamos 3 ejemplos de modelos 3D, les asignamos una licencia a cada uno
+                //y los añadimos en el DbContext
+                dbContext.Modelos3D.AddRange(
+                    new Modelo3D
+                    {
+                        Nombre = "Maceta geometrica",
+                        Categoria = "Decoracion",
+                        Formato = FormatoModelo3D.OBJ,
+                        Precio = 10.99m,
+                        Licencia = licenciaPersonal
+                    },
+                    new Modelo3D
+                    {
+                        Nombre = "Soporte para mando",
+                        Categoria = "Accesorios",
+                        Formato = FormatoModelo3D.TresMF,
+                        Precio = 15.99m,
+                        Licencia = licenciaComercial
+                    },
+                    new Modelo3D
+                    {
+                        Nombre = "Dragon articulado",
+                        Categoria = "Miniaturas",
+                        Formato = FormatoModelo3D.STL,
+                        Precio = 7.50m,
+                        Licencia = licenciaPersonal
+                    });
+                dbContext.SaveChanges();
+            }
+        }
 
 
         public static void SeedImpresoras3D(ApplicationDbContext dbContext){ 
