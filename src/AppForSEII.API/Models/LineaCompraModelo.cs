@@ -1,4 +1,6 @@
 namespace AppForSEII.API.Models;
+using DisplayAttribute = System.ComponentModel.DataAnnotations.DisplayAttribute;
+using DataType = System.ComponentModel.DataAnnotations.DataType;
 
 public class LineaCompraModelo
 {
