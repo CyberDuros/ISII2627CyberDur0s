@@ -18,6 +18,12 @@ namespace AppForSEII.API.Data {
             catch (Exception ex) {
                 logger.LogError(ex, "An error occurred seeding the Users in the Database.");
             }
+            try {
+                SeedAccesorios(dbContext);
+            }
+            catch (Exception ex) {
+                logger.LogError(ex, "An error occurred seeding the Accesorios in the Database.");
+            }
 
  
 
@@ -68,6 +74,22 @@ namespace AppForSEII.API.Data {
 
                 }
             }
+
+        }
+        public static void SeedAccesorios(ApplicationDbContext dbcontext) {
+            
+            if (dbcontext.Accesorios.FirstOrDefault(a => a.Nombre == "Boquilla de laton") == null){
+                
+                dbcontext.Accesorios.Add(new Accesorio("Boquilla de laton", CategoriaAccesorio.Boquillas, "Ender 3", 30, 2.50m));
+
+            }
+            if (dbcontext.Accesorios.FirstOrDefault(a => a.Nombre == "Espátula") == null){
+                
+                dbcontext.Accesorios.Add(new Accesorio("Espátula", CategoriaAccesorio.Herramientas, "Todas", 15, 6.75m));
+
+            }
+            dbcontext.SaveChanges();
+
 
         }
 
