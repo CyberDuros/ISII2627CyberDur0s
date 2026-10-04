@@ -15,10 +15,10 @@ public class Material
     public decimal PrecioPorGramo { get; set; }
 
     [Precision(10,2)]
-    [Range(0, 99999.9999, ErrorMessage = "El stock no puede ser negativo.")]
+    [Range(0, 99999.99, ErrorMessage = "El stock no puede ser negativo.")]
     public decimal StockGramos { get; set; }
 
-    public HashSet<Pieza3D> Piezas3D { get; set; } = new HashSet<Pieza3D>();
+    public HashSet<Pieza3D> Piezas3D { get; set; }
 
     public Material()
     {

@@ -15,8 +15,7 @@ public class Pieza3D
     public CategoriaPieza Categoria { get; set; }
 
     // Relación Pieza3D 0..* ----- 1..* Material
-    public HashSet<Material> MaterialesValidos { get; set; } = new HashSet<Material>();
-
+    public HashSet<Material> MaterialesValidos { get; set; }
     public Pieza3D()
     {
     }
