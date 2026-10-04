@@ -1,4 +1,6 @@
 namespace AppForSEII.API.Models;
+using DisplayAttribute = System.ComponentModel.DataAnnotations.DisplayAttribute;
+using DataType = System.ComponentModel.DataAnnotations.DataType;
 
 [Index(nameof(Nombre), IsUnique = true)]
 public class Modelo3D
