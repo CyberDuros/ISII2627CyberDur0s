@@ -21,4 +21,5 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<Pieza3D> Piezas3Ds { get; set; }
     public DbSet<Cliente> Clientes { get; set; }
     public DbSet<EncargoImpresion> EncargosImpresion { get; set; }
+    public DbSet<LineaEncargo> LineasEncargo { get; set; }
 }
