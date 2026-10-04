@@ -1,4 +1,5 @@
 namespace AppForSEII.API.Models;
+using DisplayAttribute = System.ComponentModel.DataAnnotations.DisplayAttribute;
 
 // Add profile data for application users by adding properties to the ApplicationUser class
 public class Accesorio
