@@ -1,4 +1,5 @@
 namespace AppForSEII.API.Models;
+using DisplayAttribute = System.ComponentModel.DataAnnotations.DisplayAttribute;
 
 public class Cliente : ApplicationUser
 {
