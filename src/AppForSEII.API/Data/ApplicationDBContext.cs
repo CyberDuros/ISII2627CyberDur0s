@@ -20,6 +20,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
     public DbSet<LineaReserva> LineasReservas { get; set; }
 
+    public DbSet<Impresora3D> Impresoras3D { get; set; }
 
 
 }
