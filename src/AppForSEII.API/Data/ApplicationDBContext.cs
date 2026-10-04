@@ -18,6 +18,10 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
     public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     public DbSet<CompraModelo3D> ComprasModelos3D { get; set; }
+    public DbSet<Modelo3D> Modelos3D { get; set; }
+    public DbSet<LineaCompraModelo> LineasCompraModelo { get; set; }
+    public DbSet<LicenciaModelo3D> LicenciasModelo3D { get; set; }
+
 
 
 
