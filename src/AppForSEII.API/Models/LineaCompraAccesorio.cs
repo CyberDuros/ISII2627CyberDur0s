@@ -1,12 +1,12 @@
 namespace AppForSEII.API.Models;
 using DisplayAttribute = System.ComponentModel.DataAnnotations.DisplayAttribute;
 
-public class LineasCompraAccesorios
+public class LineaCompraAccesorio
 {
-    public LineasCompraAccesorios()
+    public LineaCompraAccesorio()
     {
     }
-    public LineasCompraAccesorios(Accesorio accesorio, int cantidad, decimal precioUnitario, decimal subtotal)
+    public LineaCompraAccesorio(Accesorio accesorio, int cantidad, decimal precioUnitario, decimal subtotal)
     {
         Accesorio = accesorio;
         Cantidad = cantidad;
