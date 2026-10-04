@@ -28,6 +28,13 @@ namespace AppForSEII.API.Data {
                 logger.LogError(ex, "An error occurred seeding the Impresoras 3D in the Database.");
             }
 
+            try {
+                SeedMaterialesYPiezas3D(dbContext);
+            }
+            catch (Exception ex) {
+                logger.LogError(ex, "An error occurred seeding the Materiales and Piezas3D in the Database.");
+            }
+
  
 
         }
@@ -95,8 +102,39 @@ namespace AppForSEII.API.Data {
             }
 
             dbContext.SaveChanges();
+          }
 
 
+            public static void SeedMaterialesYPiezas3D(ApplicationDbContext dbcontext) {
+            string[] materialesNombres = ["PLA", "PETG", "ABS", "Resina"];
+            decimal[] preciosPorGramo = [0.025m, 0.030m, 0.028m, 0.090m];
+            decimal[] stocksGramos = [5000m, 3000m, 0m, 1500m];
+            List<Material> materiales = [];
+            Pieza3D pieza;
+            for(int i = 0; i < materialesNombres.Length; i++)
+            {
+                string nombre = materialesNombres[i];
+                var material = dbcontext.Materiales.FirstOrDefault(m => m.Nombre == nombre);
+                if (material == null)
+                {
+                    material = new Material(nombre, preciosPorGramo[i], stocksGramos[i]);
+                    dbcontext.Materiales.Add(material);
+                }
+                materiales.Add(material);
+            }
+            if (dbcontext.Piezas3D.FirstOrDefault(p => p.Nombre == "Barco") == null)
+            {
+                pieza = new Pieza3D("Barco", 120.50m, CategoriaPieza.Decoracion);
+                pieza.MaterialesValidos = new HashSet<Material> { materiales[0], materiales[1] };
+                dbcontext.Piezas3D.Add(pieza);
+            }
+            if (dbcontext.Piezas3D.FirstOrDefault(p => p.Nombre == "Figura de la ESIIAB") == null)
+            {
+                pieza = new Pieza3D("Figura de la ESIIAB", 45.00m, CategoriaPieza.MiniaturasYMaquetas);
+                pieza.MaterialesValidos = new HashSet<Material> { materiales[3], materiales[0] };
+                dbcontext.Piezas3D.Add(pieza);
+            }
+             dbcontext.SaveChanges();
         }
     }
 }
