@@ -6,11 +6,11 @@ public class LineaCompraAccesorio
     public LineaCompraAccesorio()
     {
     }
-    public LineaCompraAccesorio(Accesorio accesorio, int cantidad, decimal precioUnitario, decimal subtotal)
+    public LineaCompraAccesorio(Accesorio accesorio, int cantidad, decimal precioUnidad, decimal subtotal)
     {
         Accesorio = accesorio;
         Cantidad = cantidad;
-        PrecioUnitario = precioUnitario;
+        PrecioUnidad = precioUnidad;
         Subtotal = subtotal;
     }
     public int Id { get; set; }
@@ -23,12 +23,12 @@ public class LineaCompraAccesorio
 
     [DataType(System.ComponentModel.DataAnnotations.DataType.Currency)] 
     [Display(Name = "Precio Unitario")]
-    [Precision(5, 2)]
-    public decimal PrecioUnitario { get; set; }
+    [Precision(10, 2)]
+    public decimal PrecioUnidad { get; set; }
     
     [DataType(System.ComponentModel.DataAnnotations.DataType.Currency)] 
     [Display(Name = "Subtotal")]
-    [Precision(5, 2)]
+    [Precision(10, 2)]
     public decimal Subtotal { get; set; }
-    public IList<CompraAccesorios> ComprasAccesorios { get; set; }
+    public CompraAccesorios CompraAccesorios { get; set; }
 }

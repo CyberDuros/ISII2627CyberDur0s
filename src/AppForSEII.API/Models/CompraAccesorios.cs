@@ -7,12 +7,12 @@ public class CompraAccesorios
     public CompraAccesorios()
     {
     }
-    public CompraAccesorios(Cliente cliente, DateTime fechaCompra, string nombreCliente,string apellidoCliente, string direccionEnvio,string numeroTelefono, decimal precioTotal, MetodoPago metodoPago)
+    public CompraAccesorios(Cliente cliente, DateTime fechaCompra, string nombreCliente,string apellidosCliente, string direccionEnvio,string numeroTelefono, decimal precioTotal, MetodoPago metodoPago)
     {
         Cliente = cliente;
         FechaCompra = fechaCompra;
         NombreCliente = nombreCliente;
-        ApellidoCliente = apellidoCliente;
+        ApellidosCliente = apellidosCliente;
         DireccionEnvio = direccionEnvio;
         NumeroTelefono = numeroTelefono;
         PrecioTotal = precioTotal;
@@ -28,8 +28,8 @@ public class CompraAccesorios
      [StringLength(50, ErrorMessage = "El nombre no puede tener mas de 50 caracteres.")]
     public string NombreCliente { get; set; }
 
-     [StringLength(50, ErrorMessage = "El apellido no puede tener mas de 50 caracteres.")]
-    public string ApellidoCliente { get; set; }
+     [StringLength(50, ErrorMessage = "Los apellidos no pueden tener mas de 50 caracteres.")]
+    public string ApellidosCliente { get; set; }
 
      [StringLength(100, ErrorMessage = "La direccion de envio no puede tener mas de 100 caracteres.")]
     public string DireccionEnvio { get; set; }
