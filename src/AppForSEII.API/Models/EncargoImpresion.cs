@@ -40,6 +40,7 @@ public class EncargoImpresion
     public string DireccionEnvio { get; set; } = String.Empty;
 
     [Display(Name = "Número de Teléfono")]
+    [StringLength(20, ErrorMessage = "El número de teléfono no puede contener más de 20 caracteres.")]
     [Phone]
     public string NumeroTelefono { get; set; } = String.Empty;
 
