@@ -5,9 +5,15 @@ using DataType = System.ComponentModel.DataAnnotations.DataType;
 
 public class Impresora3D
 {
-    public Impresora3D() { }
+    public Impresora3D()
+    {
+        Nombre = string.Empty;
+        Modelo = string.Empty;
+        Descripcion = string.Empty;
+        LineasReserva = new List<LineaReserva>();
+    }
 
-    public Impresora3D(string nombre, string modelo, TipoImpresora tipo, string descripcion, decimal preciokilovatiohora, decimal precioreserva)
+    public Impresora3D(string nombre, string modelo, TipoImpresora tipo, string descripcion, decimal preciokilovatiohora, decimal precioreserva):this()
     {
         Nombre = nombre;
         Modelo = modelo;
