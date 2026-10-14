@@ -20,8 +20,8 @@ public class ReservaImpresora
 
     public int Id { get; set; }
 
-    [DataType(System.ComponentModel.DataAnnotations.DataType.Date)]
-    [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+    [DataType(System.ComponentModel.DataAnnotations.DataType.DateTime)]
+    [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = true)]
     [Display(Name = "Fecha de Reserva")]
     public DateTime FechaReserva { get; set; }
 
