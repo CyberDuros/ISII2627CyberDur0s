@@ -4,6 +4,16 @@ namespace AppForSEII.API.Models;
 [Index(nameof(Nombre), IsUnique = true)]
 public class Material
 {
+     public Material()
+    {
+    }
+
+    public Material(string nombre, decimal precioPorGramo, decimal stockGramos)
+    {
+        Nombre = nombre;
+        PrecioPorGramo = precioPorGramo;
+        StockGramos = stockGramos;
+    }
     public int Id { get; set; }
 
     [StringLength(50, ErrorMessage = "El nombre debe tener entre 1 y 50 caracteres.", MinimumLength = 1)]
@@ -19,15 +29,4 @@ public class Material
     public decimal StockGramos { get; set; }
 
     public HashSet<Pieza3D> Piezas3D { get; set; }
-
-    public Material()
-    {
-    }
-
-    public Material(string nombre, decimal precioPorGramo, decimal stockGramos)
-    {
-        Nombre = nombre;
-        PrecioPorGramo = precioPorGramo;
-        StockGramos = stockGramos;
-    }
 }

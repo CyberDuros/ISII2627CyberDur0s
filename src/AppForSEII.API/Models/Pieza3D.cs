@@ -2,6 +2,16 @@ namespace AppForSEII.API.Models;
 
 public class Pieza3D
 {
+    public Pieza3D()
+    {
+    }
+
+    public Pieza3D(string nombre, decimal peso, CategoriaPieza categoria)
+    {
+        Nombre = nombre;
+        Peso = peso;
+        Categoria = categoria;
+    }
     public int Id { get; set; }
 
     [StringLength(50, ErrorMessage = "El nombre debe tener entre 1 y 50 caracteres.", MinimumLength = 1)]
@@ -16,14 +26,4 @@ public class Pieza3D
 
     // Relación Pieza3D 0..* ----- 1..* Material
     public HashSet<Material> MaterialesValidos { get; set; }
-    public Pieza3D()
-    {
-    }
-
-    public Pieza3D(string nombre, decimal peso, CategoriaPieza categoria)
-    {
-        Nombre = nombre;
-        Peso = peso;
-        Categoria = categoria;
-    }
 }
