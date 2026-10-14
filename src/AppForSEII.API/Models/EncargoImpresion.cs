@@ -25,6 +25,7 @@ public class EncargoImpresion
 
     [Display(Name = "Fecha del Encargo")]
     [DataType(System.ComponentModel.DataAnnotations.DataType.Date)]
+    [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
     public DateTime FechaEncargo { get; set; }
 
     [Display(Name = "Nombre")]
