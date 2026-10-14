@@ -31,6 +31,7 @@ public class Modelo3D
     [Precision(10,2)]
     public decimal Precio {get; set; }
     
+    [DeleteBehavior(DeleteBehavior.NoAction)]
     public LicenciaModelo3D Licencia { get; set; }
 
     //Un modelo3D puede aparecer en muchas lineas de compra de distintas
