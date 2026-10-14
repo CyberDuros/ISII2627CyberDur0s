@@ -10,7 +10,7 @@ public class EncargoImpresion
 
     public EncargoImpresion(DateTime fechaEncargo, string nombreCliente, string apellidosCliente, 
         string direccionEnvio, string numeroTelefono, string? descripcion,
-        decimal precioTotal, MetodoPago metodoPago, Cliente cliente)
+        MetodoPago metodoPago, Cliente cliente)
     {
         FechaEncargo = fechaEncargo;
         NombreCliente = nombreCliente;
@@ -18,7 +18,6 @@ public class EncargoImpresion
         DireccionEnvio = direccionEnvio;
         NumeroTelefono = numeroTelefono;
         Descripcion = descripcion;
-        PrecioTotal = precioTotal;
         MetodoPago = metodoPago;
         Cliente = cliente;
     }
@@ -64,4 +63,16 @@ public class EncargoImpresion
 
     // Relacion EncargoImpresion 1 <>--- 1..* lineaEncargo (contiene)
     public IList<LineaEncargo> LineasEncargo { get; set; }
+
+    // El precio total es la suma de los subtotales de las líneas del encargo
+    public void CalcularPrecioTotal()
+    {
+        if (LineasEncargo == null) { PrecioTotal = 0; return; }
+        decimal total = 0;
+        foreach (LineaEncargo l in LineasEncargo)
+        {
+            total += l.Subtotal;
+        }
+        PrecioTotal = total;
+    }
 }
