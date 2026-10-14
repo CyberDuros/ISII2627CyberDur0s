@@ -18,6 +18,7 @@ public class LineaEncargo
     }
     public int Id { get; set; }
 
+    [Display(Name = "Cantidad")]
     [Range(1, int.MaxValue, ErrorMessage = "La cantidad mínima es 1.")]
     public int Cantidad { get; set; }
 
@@ -27,6 +28,7 @@ public class LineaEncargo
     [Range(0, 99999.99, ErrorMessage = "El precio por unidad no puede ser negativo.")]
     public decimal PrecioUnidad { get; set; }
 
+    [Display(Name = "Subtotal")]
     [DataType(System.ComponentModel.DataAnnotations.DataType.Currency)]
     [Precision(10, 2)]
     [Range(0, 99999.99, ErrorMessage = "El subtotal no puede ser negativo.")]
