@@ -2,6 +2,20 @@ namespace AppForSEII.API.Models;
 using DisplayAttribute = System.ComponentModel.DataAnnotations.DisplayAttribute;
 public class LineaEncargo
 {
+    public LineaEncargo()
+    {
+    }
+
+    public LineaEncargo(int cantidad, decimal precioUnidad, 
+        EncargoImpresion encargoImpresion, Pieza3D pieza3D, Material material)
+    {
+        Cantidad = cantidad;
+        PrecioUnidad = precioUnidad;
+        Subtotal = cantidad * precioUnidad;
+        EncargoImpresion = encargoImpresion;
+        Pieza3D = pieza3D;
+        Material = material;
+    }
     public int Id { get; set; }
 
     [Range(1, int.MaxValue, ErrorMessage = "La cantidad mínima es 1.")]
@@ -31,19 +45,4 @@ public class LineaEncargo
     // Si se borra un material, las líneas de encargos ya hechos no se borran
     [DeleteBehavior(DeleteBehavior.NoAction)]
     public Material Material { get; set; } = null!; 
-
-    public LineaEncargo()
-    {
-    }
-
-    public LineaEncargo(int cantidad, decimal precioUnidad, 
-        EncargoImpresion encargoImpresion, Pieza3D pieza3D, Material material)
-    {
-        Cantidad = cantidad;
-        PrecioUnidad = precioUnidad;
-        Subtotal = cantidad * precioUnidad;
-        EncargoImpresion = encargoImpresion;
-        Pieza3D = pieza3D;
-        Material = material;
-    }
 }
