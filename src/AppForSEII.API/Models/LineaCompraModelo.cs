@@ -6,9 +6,8 @@ public class LineaCompraModelo
 {
     public LineaCompraModelo(){}
 
-    public LineaCompraModelo(CompraModelo3D compraModelo3D, Modelo3D modelo3D, int cantidadLicencias, decimal precioUnidad)
+    public LineaCompraModelo(Modelo3D modelo3D, int cantidadLicencias, decimal precioUnidad)
     {
-        CompraModelo3D = compraModelo3D;
         Modelo3D = modelo3D;
         CantidadLicencias = cantidadLicencias;
         PrecioUnidad = precioUnidad;
