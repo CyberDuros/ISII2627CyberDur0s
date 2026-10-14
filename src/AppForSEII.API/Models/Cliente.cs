@@ -12,7 +12,7 @@ public class Cliente : ApplicationUser
         DireccionFacturacion = direccionFacturacion;
     }
 
-    [StringLength(100, ErrorMessage = "La dirección de facturación no puede superar los 100 caracteres.")]
+    [StringLength(200, ErrorMessage = "La dirección de facturación no puede superar los 200 caracteres.")]
     public string DireccionFacturacion { get; set; }
 
     public IList<CompraAccesorios> ComprasAccesorios { get; set; }
