@@ -62,6 +62,8 @@ public class CompraModelo3D
     // Relación N..1 con Cliente
     // La clave de ApplicationUser (IdentityUser) es string, por eso ClienteId es string.
     // Si se borra un cliente no se borran sus compras.
+    public string ClienteId {get; set;}
+
     [DeleteBehavior(DeleteBehavior.NoAction)]
     public Cliente Cliente { get; set; }
 }
