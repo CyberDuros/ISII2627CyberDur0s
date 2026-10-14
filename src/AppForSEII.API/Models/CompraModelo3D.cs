@@ -4,10 +4,18 @@ using DataType = System.ComponentModel.DataAnnotations.DataType;
 
 public class CompraModelo3D
 {
-    public CompraModelo3D(){}
+    public CompraModelo3D()
+    {
+        NombreCliente = string.Empty;
+        ApellidosCliente = string.Empty;
+        CorreoElectronico = string.Empty;
+        DireccionFacturacion = string.Empty;
+        LineasCompra = new List<LineaCompraModelo>();
+        Cliente = null!;
+    }
 
     public CompraModelo3D(Cliente cliente, string nombreCliente, string apellidosCliente, string correoElectronico,
-        string direccionFacturacion, MetodoPago metodoPago, string? descripcion, DateTime fechaCompra, IList<LineaCompraModelo> lineasCompra)
+        string direccionFacturacion, MetodoPago metodoPago, string? descripcion, DateTime fechaCompra, IList<LineaCompraModelo> lineasCompra) : this()
     {
         Cliente = cliente;
         NombreCliente = nombreCliente;
@@ -19,11 +27,15 @@ public class CompraModelo3D
         LineasCompra = lineasCompra;
         FechaCompra = fechaCompra;
         PrecioTotal = lineasCompra.Sum(l => l.Subtotal);
+        //Al tener relacion en las dos direcciones, hay una referencia entre la compra y sus lineas
+        //las dos describen la misma relacion, pero en memoria son dos variables distintas
+        foreach(var linea in lineasCompra)
+            linea.CompraModelo3D = this;
     }
  
     public int Id { get; set; }
  
-    [DataType(System.ComponentModel.DataAnnotations.DataType.DateTime), Display(Name = "Fecha de compra")]
+    [DataType(DataType.DateTime), Display(Name = "Fecha de compra")]
     [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm:ss}", ApplyFormatInEditMode = true)]
     public DateTime FechaCompra { get; set; }
  
@@ -48,7 +60,7 @@ public class CompraModelo3D
     [Display(Name = "Descripción")]
     public string? Descripcion { get; set; }
  
-    [DataType(System.ComponentModel.DataAnnotations.DataType.Currency)]
+    [DataType(DataType.Currency)]
     [Display(Name = "Precio total")]
     [Precision(10, 2)]
     public decimal PrecioTotal { get; set; }
