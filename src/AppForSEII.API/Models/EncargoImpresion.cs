@@ -4,6 +4,24 @@ namespace AppForSEII.API.Models;
 
 public class EncargoImpresion
 {
+      public EncargoImpresion()
+    {
+    }
+
+    public EncargoImpresion(DateTime fechaEncargo, string nombreCliente, string apellidosCliente, 
+        string direccionEnvio, string numeroTelefono, string? descripcion,
+        decimal precioTotal, MetodoPago metodoPago, Cliente cliente)
+    {
+        FechaEncargo = fechaEncargo;
+        NombreCliente = nombreCliente;
+        ApellidosCliente = apellidosCliente;
+        DireccionEnvio = direccionEnvio;
+        NumeroTelefono = numeroTelefono;
+        Descripcion = descripcion;
+        PrecioTotal = precioTotal;
+        MetodoPago = metodoPago;
+        Cliente = cliente;
+    }
     public int Id { get; set; }
 
     [Display(Name = "Fecha del Encargo")]
@@ -46,23 +64,4 @@ public class EncargoImpresion
 
     // Relacion EncargoImpresion 1 <>--- 1..* lineaEncargo (contiene)
     public IList<LineaEncargo> LineasEncargo { get; set; }
-
-    public EncargoImpresion()
-    {
-    }
-
-    public EncargoImpresion(DateTime fechaEncargo, string nombreCliente, string apellidosCliente, 
-        string direccionEnvio, string numeroTelefono, string? descripcion,
-        decimal precioTotal, MetodoPago metodoPago, Cliente cliente)
-    {
-        FechaEncargo = fechaEncargo;
-        NombreCliente = nombreCliente;
-        ApellidosCliente = apellidosCliente;
-        DireccionEnvio = direccionEnvio;
-        NumeroTelefono = numeroTelefono;
-        Descripcion = descripcion;
-        PrecioTotal = precioTotal;
-        MetodoPago = metodoPago;
-        Cliente = cliente;
-    }
 }
