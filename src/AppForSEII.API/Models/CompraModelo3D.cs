@@ -10,6 +10,7 @@ public class CompraModelo3D
         ApellidosCliente = string.Empty;
         CorreoElectronico = string.Empty;
         DireccionFacturacion = string.Empty;
+        ClienteId = string.Empty;
         LineasCompra = new List<LineaCompraModelo>();
         Cliente = null!;
     }
