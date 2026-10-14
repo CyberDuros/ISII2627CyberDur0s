@@ -5,9 +5,16 @@ using DataType = System.ComponentModel.DataAnnotations.DataType;
 
 public class ReservaImpresora
 {
-    public ReservaImpresora() { }
+    public ReservaImpresora()
+    {
+        NombreCliente = string.Empty;
+        ApellidosCliente = string.Empty;
+        DireccionFacturacion = string.Empty;
+        LineasReserva = new List<LineaReserva>();
+        Cliente = new Cliente();
+    }
 
-    public ReservaImpresora(string nombreCliente, DateTime fechaReserva, string apellidosCliente, string direccionFacturacion, decimal precioTotal, MetodoPago metodoPago, Cliente cliente)
+    public ReservaImpresora(string nombreCliente, DateTime fechaReserva, string apellidosCliente, string direccionFacturacion, decimal precioTotal, MetodoPago metodoPago, Cliente cliente): this()
     {
         NombreCliente = nombreCliente;
         FechaReserva = fechaReserva;
