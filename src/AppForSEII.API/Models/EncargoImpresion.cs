@@ -67,13 +67,11 @@ public class EncargoImpresion
     // El precio total es la suma de los subtotales de las líneas del encargo
     public void CalcularPrecioTotal()
     {
-       decimal total = 0;
-        if (LineasEncargo != null)
+        if (LineasEncargo == null) { PrecioTotal = 0; return; }
+        decimal total = 0;
+        foreach (LineaEncargo l in LineasEncargo)
         {
-            foreach (LineaEncargo l in LineasEncargo)
-            {
-                total += l.Subtotal;
-            }
+            total += l.Subtotal;
         }
         PrecioTotal = total;
     }
