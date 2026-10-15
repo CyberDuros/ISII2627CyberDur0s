@@ -130,30 +130,10 @@ namespace AppForSEII.API.Data {
                 //A la misma vez que creamos 3 ejemplos de modelos 3D, les asignamos una licencia a cada uno
                 //y los añadimos en el DbContext
                 dbContext.Modelos3D.AddRange(
-                    new Modelo3D
-                    {
-                        Nombre = "Maceta geometrica",
-                        Categoria = "Decoracion",
-                        Formato = FormatoModelo3D.OBJ,
-                        Precio = 10.99m,
-                        Licencia = licenciaPersonal
-                    },
-                    new Modelo3D
-                    {
-                        Nombre = "Soporte para mando",
-                        Categoria = "Accesorios",
-                        Formato = FormatoModelo3D.TresMF,
-                        Precio = 15.99m,
-                        Licencia = licenciaComercial
-                    },
-                    new Modelo3D
-                    {
-                        Nombre = "Dragon articulado",
-                        Categoria = "Miniaturas",
-                        Formato = FormatoModelo3D.STL,
-                        Precio = 7.50m,
-                        Licencia = licenciaPersonal
-                    });
+                    new Modelo3D("Maceta geometrica", "Decoracion", FormatoModelo3D.OBJ, 10.99m, licenciaPersonal),
+                    new Modelo3D("Soporte para mando", "Accesorios", FormatoModelo3D.TresMF, 15.99m, licenciaComercial),
+                    new Modelo3D("Dragon articulado", "Miniaturas", FormatoModelo3D.STL, 7.50m, licenciaPersonal)
+                );
                 dbContext.SaveChanges();
             }
         }
