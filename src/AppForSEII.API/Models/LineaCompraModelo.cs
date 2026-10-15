@@ -4,11 +4,14 @@ using DataType = System.ComponentModel.DataAnnotations.DataType;
 
 public class LineaCompraModelo
 {
-    public LineaCompraModelo(){}
-
-    public LineaCompraModelo(CompraModelo3D compraModelo3D, Modelo3D modelo3D, int cantidadLicencias, decimal precioUnidad)
+    public LineaCompraModelo()
     {
-        CompraModelo3D = compraModelo3D;
+        CompraModelo3D = null!;
+        Modelo3D = null!;
+    }
+
+    public LineaCompraModelo(Modelo3D modelo3D, int cantidadLicencias, decimal precioUnidad) : this()
+    {
         Modelo3D = modelo3D;
         CantidadLicencias = cantidadLicencias;
         PrecioUnidad = precioUnidad;
