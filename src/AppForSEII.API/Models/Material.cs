@@ -7,19 +7,21 @@ public class Material
 {
     public Material()
     {
+        this.Nombre = string.Empty;
+        this.Piezas3D = new HashSet<Pieza3D>();
     }
 
-    public Material(string nombre, decimal precioPorGramo, decimal stockGramos)
+    public Material(string nombre, decimal precioPorGramo, decimal stockGramos) : this()
     {
-        Nombre = nombre;
-        PrecioPorGramo = precioPorGramo;
-        StockGramos = stockGramos;
+        this.Nombre = nombre;
+        this.PrecioPorGramo = precioPorGramo;
+        this.StockGramos = stockGramos;
     }
     public int Id { get; set; }
 
     [Display(Name = "Nombre")]
     [StringLength(50, ErrorMessage = "El nombre debe tener entre 1 y 50 caracteres.", MinimumLength = 1)]
-    public string Nombre { get; set; } = string.Empty;
+    public string Nombre { get; set; }
 
     [Display(Name = "Precio por gramo")]
     [DataType(DataType.Currency)]
