@@ -5,8 +5,10 @@ public class LineaCompraAccesorio
 {
     public LineaCompraAccesorio()
     {
+        Accesorio = null!;
+        CompraAccesorios = null!;
     }
-    public LineaCompraAccesorio(Accesorio accesorio, int cantidad, decimal precioUnidad, decimal subtotal)
+    public LineaCompraAccesorio(Accesorio accesorio, int cantidad, decimal precioUnidad, decimal subtotal): this()
     {
         Accesorio = accesorio;
         Cantidad = cantidad;
@@ -15,6 +17,7 @@ public class LineaCompraAccesorio
     }
     public int Id { get; set; }
     
+    [DeleteBehavior(DeleteBehavior.NoAction)]
     public Accesorio Accesorio { get; set; }
 
     [Display(Name = "Cantidad")]
