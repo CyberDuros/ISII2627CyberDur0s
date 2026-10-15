@@ -4,10 +4,13 @@ public class LineaEncargo
 {
     public LineaEncargo()
     {
+        this.EncargoImpresion = null!;
+        this.Pieza3D = null!;
+        this.Material = null!;
     }
 
     public LineaEncargo(int cantidad, decimal precioUnidad, 
-        EncargoImpresion encargoImpresion, Pieza3D pieza3D, Material material)
+        EncargoImpresion encargoImpresion, Pieza3D pieza3D, Material material) : this()
     {
         Cantidad = cantidad;
         PrecioUnidad = precioUnidad;
@@ -36,15 +39,15 @@ public class LineaEncargo
 
     // Relación con EncargoImpresión 1 <>-- 1..* LineaEncargo ("contiene").
     // Si se borran el encargo se borran las líneas.
-    public EncargoImpresion EncargoImpresion { get; set; } = null!;
+    public EncargoImpresion EncargoImpresion { get; set; }
 
     // Relación LineaEncargo 0..* ---> Pieza3D ("pieza")
     // Si se borra una pieza, las líneas de los encargos ya hecho no se borran
     [DeleteBehavior(DeleteBehavior.NoAction)]
-    public Pieza3D Pieza3D { get; set; } = null!;
+    public Pieza3D Pieza3D { get; set; }
     
     // Relación LineaEncargo 0..* ----> 1 Material ("material seleccionado")
     // Si se borra un material, las líneas de encargos ya hechos no se borran
     [DeleteBehavior(DeleteBehavior.NoAction)]
-    public Material Material { get; set; } = null!; 
+    public Material Material { get; set; }
 }
