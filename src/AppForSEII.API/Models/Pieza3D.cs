@@ -1,24 +1,25 @@
 namespace AppForSEII.API.Models;
-
-using System.ComponentModel;
 using DisplayAttribute = System.ComponentModel.DataAnnotations.DisplayAttribute;
 public class Pieza3D
 {
     public Pieza3D()
     {
+        this.Nombre = string.Empty;
+        this.MaterialesValidos = new HashSet<Material>();
     }
 
-    public Pieza3D(string nombre, decimal peso, CategoriaPieza categoria)
+    public Pieza3D(string nombre, decimal peso, CategoriaPieza categoria) : this()
     {
-        Nombre = nombre;
-        Peso = peso;
-        Categoria = categoria;
+        this.Nombre = nombre;
+        this.Peso = peso;
+        this.Categoria = categoria;
     }
+
     public int Id { get; set; }
 
     [Display(Name = "Nombre")]
     [StringLength(50, ErrorMessage = "El nombre debe tener entre 1 y 50 caracteres.", MinimumLength = 1)]
-    public string Nombre { get; set; } = string.Empty;
+    public string Nombre { get; set; }
 
     // Peso en gramos, con dos decimales
     [Display(Name = "Peso (g)")]
