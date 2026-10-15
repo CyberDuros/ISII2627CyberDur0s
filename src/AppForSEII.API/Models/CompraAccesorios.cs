@@ -6,8 +6,14 @@ public class CompraAccesorios
 {
     public CompraAccesorios()
     {
+        NombreCliente = string.Empty;
+        ApellidosCliente = string.Empty;
+        DireccionEnvio = string.Empty;
+        NumeroTelefono = string.Empty;
+        LineasCompraAccesorios = new List<LineaCompraAccesorio>();
+        Cliente = null!;
     }
-    public CompraAccesorios(Cliente cliente, DateTime fechaCompra, string nombreCliente,string apellidosCliente, string direccionEnvio,string numeroTelefono, decimal precioTotal, MetodoPago metodoPago)
+    public CompraAccesorios(Cliente cliente, DateTime fechaCompra, string nombreCliente,string apellidosCliente, string direccionEnvio,string numeroTelefono, decimal precioTotal, MetodoPago metodoPago): this()
     {
         Cliente = cliente;
         FechaCompra = fechaCompra;
@@ -25,27 +31,28 @@ public class CompraAccesorios
     [Display(Name = "Fecha de Compra")]
     public DateTime FechaCompra { get; set; }
 
-     [StringLength(50, ErrorMessage = "El nombre no puede tener mas de 50 caracteres.")]
+    [StringLength(50, ErrorMessage = "El nombre no puede tener mas de 50 caracteres.")]
     public string NombreCliente { get; set; }
 
-     [StringLength(50, ErrorMessage = "Los apellidos no pueden tener mas de 50 caracteres.")]
+    [StringLength(50, ErrorMessage = "Los apellidos no pueden tener mas de 50 caracteres.")]
     public string ApellidosCliente { get; set; }
 
-     [StringLength(100, ErrorMessage = "La direccion de envio no puede tener mas de 100 caracteres.")]
+    [StringLength(100, ErrorMessage = "La direccion de envio no puede tener mas de 100 caracteres.")]
     public string DireccionEnvio { get; set; }
 
     [StringLength(50, ErrorMessage = "El numero de telefono no puede tener mas de 50 caracteres.")]
     public string NumeroTelefono { get; set; }
 
     [DataType(System.ComponentModel.DataAnnotations.DataType.Currency)]
-    [Range(0.5, float.MaxValue, ErrorMessage = "Minimum price is 0.5 ")]
+    [Range(0.5, float.MaxValue, ErrorMessage = "El precio total debe ser mayor que 0.5.")]
     [Display(Name = "Precio Total")]
     [Precision(10, 2)]
     public decimal PrecioTotal { get; set; }
     public MetodoPago MetodoPago { get; set; }
-    
-    public Cliente Cliente { get; set; }
 
+    [DeleteBehavior(DeleteBehavior.NoAction)]
+    public Cliente Cliente { get; set; }
+    
     public IList<LineaCompraAccesorio> LineasCompraAccesorios { get; set; }
 
 
