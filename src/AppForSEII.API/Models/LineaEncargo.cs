@@ -12,12 +12,12 @@ public class LineaEncargo
     public LineaEncargo(int cantidad, decimal precioUnidad, 
         EncargoImpresion encargoImpresion, Pieza3D pieza3D, Material material) : this()
     {
-        Cantidad = cantidad;
-        PrecioUnidad = precioUnidad;
-        Subtotal = cantidad * precioUnidad;
-        EncargoImpresion = encargoImpresion;
-        Pieza3D = pieza3D;
-        Material = material;
+        this.Cantidad = cantidad;
+        this.PrecioUnidad = precioUnidad;
+        this.Subtotal = cantidad * precioUnidad;
+        this.EncargoImpresion = encargoImpresion;
+        this.Pieza3D = pieza3D;
+        this.Material = material;
     }
     public int Id { get; set; }
 
