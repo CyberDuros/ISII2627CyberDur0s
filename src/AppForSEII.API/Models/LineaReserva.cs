@@ -7,8 +7,8 @@ public class LineaReserva
 {
     public LineaReserva()
     {
-        Impresora = new Impresora3D();
-        ReservaImpresora = new ReservaImpresora();
+        Impresora = null!;
+        ReservaImpresora = null!;
     }
 
     public LineaReserva(TiempoReserva tiempoReserva, decimal precioSubtotal, Impresora3D impresora, ReservaImpresora reservaImpresora): this()
