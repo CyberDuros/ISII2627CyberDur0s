@@ -49,7 +49,7 @@ public class Impresora3D
 
 
     public TipoImpresora Tipo { get; set; }
-
+     [DeleteBehavior(DeleteBehavior.NoAction)]
     public IList<LineaReserva> LineasReserva { get; set; }
 
 
