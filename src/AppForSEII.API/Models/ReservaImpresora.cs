@@ -39,7 +39,7 @@ public class ReservaImpresora
     [StringLength(50, ErrorMessage = "El apellido del cliente no puede tener más de 50 caracteres.")]
     public string ApellidosCliente { get; set; }
 
-    [StringLength(50, ErrorMessage = "La dirección de facturación no puede tener más de 50 caracteres.")]
+    [StringLength(200, ErrorMessage = "La dirección de facturación no puede tener más de 200 caracteres.")]
     public string DireccionFacturacion { get; set; }
 
     [DataType(System.ComponentModel.DataAnnotations.DataType.Currency)]
