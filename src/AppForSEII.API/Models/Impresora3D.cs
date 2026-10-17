@@ -5,9 +5,15 @@ using DataType = System.ComponentModel.DataAnnotations.DataType;
 
 public class Impresora3D
 {
-    public Impresora3D() { }
+    public Impresora3D()
+    {
+        Nombre = string.Empty;
+        Modelo = string.Empty;
+        Descripcion = string.Empty;
+        LineasReserva = new List<LineaReserva>();
+    }
 
-    public Impresora3D(string nombre, string modelo, TipoImpresora tipo, string descripcion, decimal preciokilovatiohora, decimal precioreserva)
+    public Impresora3D(string nombre, string modelo, TipoImpresora tipo, string descripcion, decimal preciokilovatiohora, decimal precioreserva):this()
     {
         Nombre = nombre;
         Modelo = modelo;
@@ -25,14 +31,14 @@ public class Impresora3D
     [StringLength(50, ErrorMessage = "El modelo no puede tener más de 50 caracteres.")]
     public string Modelo { get; set; }
 
-    [StringLength(50, ErrorMessage = "La descripción no puede tener más de 50 caracteres.")]
+    [StringLength(200, ErrorMessage = "La descripción no puede tener más de 200 caracteres.")]
     public string Descripcion { get; set; }
 
 
     [DataType(System.ComponentModel.DataAnnotations.DataType.Currency)]
-    [Range(0.5, float.MaxValue, ErrorMessage = "El valor minimo permitido es 0.5")]
+    [Range(0.0001, float.MaxValue, ErrorMessage = "El valor minimo permitido es 0.0001")]
     [Display(Name = "Precio por kilovatio hora")]
-    [Precision(10, 2)]
+    [Precision(10, 4)]
     public decimal PrecioKilovatioHora { get; set; }
 
     [DataType(System.ComponentModel.DataAnnotations.DataType.Currency)]
@@ -43,7 +49,7 @@ public class Impresora3D
 
 
     public TipoImpresora Tipo { get; set; }
-
+     [DeleteBehavior(DeleteBehavior.NoAction)]
     public IList<LineaReserva> LineasReserva { get; set; }
 
 

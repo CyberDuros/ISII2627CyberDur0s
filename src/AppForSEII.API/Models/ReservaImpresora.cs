@@ -5,9 +5,16 @@ using DataType = System.ComponentModel.DataAnnotations.DataType;
 
 public class ReservaImpresora
 {
-    public ReservaImpresora() { }
+    public ReservaImpresora()
+    {
+        NombreCliente = string.Empty;
+        ApellidosCliente = string.Empty;
+        DireccionFacturacion = string.Empty;
+        LineasReserva = new List<LineaReserva>();
+        Cliente = new Cliente();
+    }
 
-    public ReservaImpresora(string nombreCliente, DateTime fechaReserva, string apellidosCliente, string direccionFacturacion, decimal precioTotal, MetodoPago metodoPago, Cliente cliente)
+    public ReservaImpresora(string nombreCliente, DateTime fechaReserva, string apellidosCliente, string direccionFacturacion, decimal precioTotal, MetodoPago metodoPago, Cliente cliente): this()
     {
         NombreCliente = nombreCliente;
         FechaReserva = fechaReserva;
@@ -20,8 +27,8 @@ public class ReservaImpresora
 
     public int Id { get; set; }
 
-    [DataType(System.ComponentModel.DataAnnotations.DataType.Date)]
-    [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+    [DataType(System.ComponentModel.DataAnnotations.DataType.DateTime)]
+    [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = true)]
     [Display(Name = "Fecha de Reserva")]
     public DateTime FechaReserva { get; set; }
 
@@ -32,7 +39,7 @@ public class ReservaImpresora
     [StringLength(50, ErrorMessage = "El apellido del cliente no puede tener más de 50 caracteres.")]
     public string ApellidosCliente { get; set; }
 
-    [StringLength(50, ErrorMessage = "La dirección de facturación no puede tener más de 50 caracteres.")]
+    [StringLength(200, ErrorMessage = "La dirección de facturación no puede tener más de 200 caracteres.")]
     public string DireccionFacturacion { get; set; }
 
     [DataType(System.ComponentModel.DataAnnotations.DataType.Currency)]
