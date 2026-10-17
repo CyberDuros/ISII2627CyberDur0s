@@ -25,7 +25,7 @@ public class Impresora3D
     [StringLength(50, ErrorMessage = "El modelo no puede tener más de 50 caracteres.")]
     public string Modelo { get; set; }
 
-    [StringLength(50, ErrorMessage = "La descripción no puede tener más de 50 caracteres.")]
+    [StringLength(200, ErrorMessage = "La descripción no puede tener más de 200 caracteres.")]
     public string Descripcion { get; set; }
 
 
