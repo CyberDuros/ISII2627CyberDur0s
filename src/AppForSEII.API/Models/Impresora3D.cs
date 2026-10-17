@@ -36,9 +36,9 @@ public class Impresora3D
 
 
     [DataType(System.ComponentModel.DataAnnotations.DataType.Currency)]
-    [Range(0.5, float.MaxValue, ErrorMessage = "El valor minimo permitido es 0.5")]
+    [Range(0.0001, float.MaxValue, ErrorMessage = "El valor minimo permitido es 0.0001")]
     [Display(Name = "Precio por kilovatio hora")]
-    [Precision(10, 2)]
+    [Precision(10, 4)]
     public decimal PrecioKilovatioHora { get; set; }
 
     [DataType(System.ComponentModel.DataAnnotations.DataType.Currency)]
