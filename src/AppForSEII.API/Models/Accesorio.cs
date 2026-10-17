@@ -1,13 +1,16 @@
 namespace AppForSEII.API.Models;
 using DisplayAttribute = System.ComponentModel.DataAnnotations.DisplayAttribute;
 
-// Add profile data for application users by adding properties to the ApplicationUser class
+
 public class Accesorio
 {
     public Accesorio()
     {
+        Nombre = string.Empty;
+        Compatibilidad = string.Empty;
+        LineasCompraAccesorio = new List<LineaCompraAccesorio>();
     }
-    public Accesorio(string nombre, CategoriaAccesorio categoria, string compatibilidad, int cantidadDisponible, decimal precio)
+    public Accesorio(string nombre, CategoriaAccesorio categoria, string compatibilidad, int cantidadDisponible, decimal precio): this()
     {
         Nombre = nombre;
         Categoria = categoria;
@@ -25,11 +28,12 @@ public class Accesorio
     public string Compatibilidad {get;set;}
     
     [Display(Name = "Cantidad Disponible")]
-    [Range(1, int.MaxValue, ErrorMessage = "La cantidad disponible debe ser mayor a 0.")]
+    [Range(0, int.MaxValue, ErrorMessage = "La cantidad disponible debe ser mayor o igual a 0.")]
     public int CantidadDisponible {get;set;}
 
     [DataType(System.ComponentModel.DataAnnotations.DataType.Currency)]
     [Display(Name = "Precio")]
+    [Range(0, float.MaxValue, ErrorMessage = "El precio debe ser mayor o igual a 0")]
     [Precision(10, 2)]
     public decimal Precio {get;set;}
 
