@@ -5,9 +5,13 @@ using DataType = System.ComponentModel.DataAnnotations.DataType;
 
 public class LineaReserva
 {
-    public LineaReserva() { }
+    public LineaReserva()
+    {
+        Impresora = null!;
+        ReservaImpresora = null!;
+    }
 
-    public LineaReserva(TiempoReserva tiempoReserva, decimal precioSubtotal, Impresora3D impresora, ReservaImpresora reservaImpresora)
+    public LineaReserva(TiempoReserva tiempoReserva, decimal precioSubtotal, Impresora3D impresora, ReservaImpresora reservaImpresora): this()
     {
         TiempoReserva = tiempoReserva;
         PrecioSubtotal = precioSubtotal;

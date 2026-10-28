@@ -4,45 +4,52 @@ namespace AppForSEII.API.Models;
 
 public class EncargoImpresion
 {
-      public EncargoImpresion()
+    public EncargoImpresion()
     {
+        this.NombreCliente = string.Empty;
+        this.ApellidosCliente = string.Empty;
+        this.DireccionEnvio = string.Empty;
+        this.NumeroTelefono = string.Empty;
+        this.Cliente = null!;
+        this.LineasEncargo = new List<LineaEncargo>();
     }
 
     public EncargoImpresion(DateTime fechaEncargo, string nombreCliente, string apellidosCliente, 
         string direccionEnvio, string numeroTelefono, string? descripcion,
-        decimal precioTotal, MetodoPago metodoPago, Cliente cliente)
+        MetodoPago metodoPago, Cliente cliente) : this()
     {
-        FechaEncargo = fechaEncargo;
-        NombreCliente = nombreCliente;
-        ApellidosCliente = apellidosCliente;
-        DireccionEnvio = direccionEnvio;
-        NumeroTelefono = numeroTelefono;
-        Descripcion = descripcion;
-        PrecioTotal = precioTotal;
-        MetodoPago = metodoPago;
-        Cliente = cliente;
+        this.FechaEncargo = fechaEncargo;
+        this.NombreCliente = nombreCliente;
+        this.ApellidosCliente = apellidosCliente;
+        this.DireccionEnvio = direccionEnvio;
+        this.NumeroTelefono = numeroTelefono;
+        this.Descripcion = descripcion;
+        this.MetodoPago = metodoPago;
+        this.Cliente = cliente;
     }
     public int Id { get; set; }
 
     [Display(Name = "Fecha del Encargo")]
     [DataType(System.ComponentModel.DataAnnotations.DataType.Date)]
+    [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
     public DateTime FechaEncargo { get; set; }
 
     [Display(Name = "Nombre")]
     [StringLength(50, ErrorMessage = "El nombre debe tener entre 1 y 50 caracteres.", MinimumLength = 1)]
-    public string NombreCliente { get; set; } = String.Empty;
+    public string NombreCliente { get; set; }
 
     [Display(Name = "Apellidos")]
     [StringLength(80, ErrorMessage = "Los apellidos deben tener entre 1 y 80 caracteres.", MinimumLength = 1)]
-    public string ApellidosCliente { get; set; } = String.Empty;
+    public string ApellidosCliente { get; set; }
 
     [Display(Name = "Dirección de Envío")]
     [StringLength(100, ErrorMessage = "La dirección de envío debe tener 1 y 100 caracteres.", MinimumLength = 1)]
-    public string DireccionEnvio { get; set; } = String.Empty;
+    public string DireccionEnvio { get; set; }
 
     [Display(Name = "Número de Teléfono")]
+    [StringLength(20, ErrorMessage = "El número de teléfono no puede contener más de 20 caracteres.")]
     [Phone]
-    public string NumeroTelefono { get; set; } = String.Empty;
+    public string NumeroTelefono { get; set; }
 
     [Display(Name = "Descripción")]
     [StringLength(200, ErrorMessage = "La descripción no puede superar los 200 caracteres")]
@@ -60,8 +67,20 @@ public class EncargoImpresion
     // Relación EncargoImpresión 0..* ---- 1 Cliente ("realiza")
     // Cada encargo tiene UN cliente -> referencia + id
     [DeleteBehavior(DeleteBehavior.NoAction)]
-    public Cliente Cliente { get; set; } = null!;
+    public Cliente Cliente { get; set; }
 
     // Relacion EncargoImpresion 1 <>--- 1..* lineaEncargo (contiene)
     public IList<LineaEncargo> LineasEncargo { get; set; }
+
+    // El precio total es la suma de los subtotales de las líneas del encargo
+    public void CalcularPrecioTotal()
+    {
+        if (LineasEncargo == null) { PrecioTotal = 0; return; }
+        decimal total = 0;
+        foreach (LineaEncargo l in LineasEncargo)
+        {
+            total += l.Subtotal;
+        }
+        PrecioTotal = total;
+    }
 }

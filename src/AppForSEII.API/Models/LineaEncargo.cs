@@ -4,20 +4,24 @@ public class LineaEncargo
 {
     public LineaEncargo()
     {
+        this.EncargoImpresion = null!;
+        this.Pieza3D = null!;
+        this.Material = null!;
     }
 
     public LineaEncargo(int cantidad, decimal precioUnidad, 
-        EncargoImpresion encargoImpresion, Pieza3D pieza3D, Material material)
+        EncargoImpresion encargoImpresion, Pieza3D pieza3D, Material material) : this()
     {
-        Cantidad = cantidad;
-        PrecioUnidad = precioUnidad;
-        Subtotal = cantidad * precioUnidad;
-        EncargoImpresion = encargoImpresion;
-        Pieza3D = pieza3D;
-        Material = material;
+        this.Cantidad = cantidad;
+        this.PrecioUnidad = precioUnidad;
+        this.Subtotal = cantidad * precioUnidad;
+        this.EncargoImpresion = encargoImpresion;
+        this.Pieza3D = pieza3D;
+        this.Material = material;
     }
     public int Id { get; set; }
 
+    [Display(Name = "Cantidad")]
     [Range(1, int.MaxValue, ErrorMessage = "La cantidad mínima es 1.")]
     public int Cantidad { get; set; }
 
@@ -27,6 +31,7 @@ public class LineaEncargo
     [Range(0, 99999.99, ErrorMessage = "El precio por unidad no puede ser negativo.")]
     public decimal PrecioUnidad { get; set; }
 
+    [Display(Name = "Subtotal")]
     [DataType(System.ComponentModel.DataAnnotations.DataType.Currency)]
     [Precision(10, 2)]
     [Range(0, 99999.99, ErrorMessage = "El subtotal no puede ser negativo.")]
@@ -34,15 +39,15 @@ public class LineaEncargo
 
     // Relación con EncargoImpresión 1 <>-- 1..* LineaEncargo ("contiene").
     // Si se borran el encargo se borran las líneas.
-    public EncargoImpresion EncargoImpresion { get; set; } = null!;
+    public EncargoImpresion EncargoImpresion { get; set; }
 
     // Relación LineaEncargo 0..* ---> Pieza3D ("pieza")
     // Si se borra una pieza, las líneas de los encargos ya hecho no se borran
     [DeleteBehavior(DeleteBehavior.NoAction)]
-    public Pieza3D Pieza3D { get; set; } = null!;
+    public Pieza3D Pieza3D { get; set; }
     
     // Relación LineaEncargo 0..* ----> 1 Material ("material seleccionado")
     // Si se borra un material, las líneas de encargos ya hechos no se borran
     [DeleteBehavior(DeleteBehavior.NoAction)]
-    public Material Material { get; set; } = null!; 
+    public Material Material { get; set; }
 }

@@ -5,22 +5,33 @@ using DataType = System.ComponentModel.DataAnnotations.DataType;
 [Index(nameof(Nombre), IsUnique = true)]
 public class Modelo3D
 {
-    public Modelo3D(){}
+    public Modelo3D()
+    {
+        Nombre = string.Empty;
+        Categoria = string.Empty;
+        Licencia = null!;
+        LineasCompraModelo = new List<LineaCompraModelo>();
+    }
 
-    public Modelo3D(string nombre, string categoria, FormatoModelo3D formato, decimal precio)
+    public Modelo3D(string nombre, string categoria, FormatoModelo3D formato, decimal precio, LicenciaModelo3D licencia) : this()
     {
         Nombre = nombre;
         Categoria = categoria;
         Formato = formato;
         Precio = precio;
+        Licencia = licencia;
     }
 
     public int Id { get; set; }
 
     [StringLength(50, ErrorMessage = "El nombre no puede tener más de 50 caracteres.")]
+
+    [Display(Name = "Nombre")]
     public string Nombre { get; set; }
     
     [StringLength(50, ErrorMessage = "La categoría no puede tener más de 50 caracteres.")]
+    
+    [Display(Name = "Categoria")]
     public string Categoria { get; set; }
     
     [Display(Name = "Formato del Archivo")]
@@ -31,6 +42,7 @@ public class Modelo3D
     [Precision(10,2)]
     public decimal Precio {get; set; }
     
+    [DeleteBehavior(DeleteBehavior.NoAction)]
     public LicenciaModelo3D Licencia { get; set; }
 
     //Un modelo3D puede aparecer en muchas lineas de compra de distintas
