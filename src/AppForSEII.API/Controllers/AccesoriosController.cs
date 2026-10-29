@@ -14,7 +14,7 @@ namespace AppForSEII.API.Controllers
         }
         [HttpGet]
         [Route("[action]")]
-        [ProducesResponseType(typeof(List<AccesorioParaComprarDTO>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IList<AccesorioParaComprarDTO>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult> GetAccesoriosParaComprar(string? nombre, CategoriaAccesorio? categoria)
         {
             var accessorios = await _context.Accesorios
