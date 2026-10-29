@@ -50,7 +50,7 @@ namespace AppForSEII.API.Migrations
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Surname = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Discriminator = table.Column<string>(type: "nvarchar(21)", maxLength: 21, nullable: false),
-                    DireccionFacturacion = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DireccionFacturacion = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -79,8 +79,8 @@ namespace AppForSEII.API.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Modelo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Descripcion = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    PrecioKilovatioHora = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
+                    Descripcion = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    PrecioKilovatioHora = table.Column<decimal>(type: "decimal(10,4)", precision: 10, scale: 4, nullable: false),
                     PrecioReserva = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
                     Tipo = table.Column<int>(type: "int", nullable: false)
                 },
@@ -95,7 +95,7 @@ namespace AppForSEII.API.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Nombre = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     FechaExpiracion = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -261,8 +261,7 @@ namespace AppForSEII.API.Migrations
                         name: "FK_ComprasAccesorios_AspNetUsers_ClienteId",
                         column: x => x.ClienteId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -301,7 +300,7 @@ namespace AppForSEII.API.Migrations
                     NombreCliente = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ApellidosCliente = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
                     DireccionEnvio = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    NumeroTelefono = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NumeroTelefono = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Descripcion = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     PrecioTotal = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
                     MetodoPago = table.Column<int>(type: "int", nullable: false),
@@ -326,7 +325,7 @@ namespace AppForSEII.API.Migrations
                     FechaReserva = table.Column<DateTime>(type: "datetime2", nullable: false),
                     NombreCliente = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ApellidosCliente = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    DireccionFacturacion = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    DireccionFacturacion = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     PrecioTotal = table.Column<decimal>(type: "decimal(10,2)", precision: 10, scale: 2, nullable: false),
                     MetodoPago = table.Column<int>(type: "int", nullable: false),
                     ClienteId = table.Column<string>(type: "nvarchar(450)", nullable: false)
@@ -361,8 +360,7 @@ namespace AppForSEII.API.Migrations
                         name: "FK_Modelos3D_LicenciasModelo3D_LicenciaId",
                         column: x => x.LicenciaId,
                         principalTable: "LicenciasModelo3D",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -408,8 +406,7 @@ namespace AppForSEII.API.Migrations
                         name: "FK_LineasCompraAccesorios_Accesorios_AccesorioId",
                         column: x => x.AccesorioId,
                         principalTable: "Accesorios",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_LineasCompraAccesorios_ComprasAccesorios_CompraAccesoriosId",
                         column: x => x.CompraAccesoriosId,
@@ -470,8 +467,7 @@ namespace AppForSEII.API.Migrations
                         name: "FK_LineasReservas_Impresoras3D_ImpresoraId",
                         column: x => x.ImpresoraId,
                         principalTable: "Impresoras3D",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_LineasReservas_ReservaImpresoras_ReservaImpresoraId",
                         column: x => x.ReservaImpresoraId,
