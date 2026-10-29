@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppForSEII.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20261028161546_CreateIdentitySchema")]
+    [Migration("20261029194924_CreateIdentitySchema")]
     partial class CreateIdentitySchema
     {
         /// <inheritdoc />
@@ -281,7 +281,8 @@ namespace AppForSEII.API.Migrations
 
                     b.Property<string>("NumeroTelefono")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<decimal>("PrecioTotal")
                         .HasPrecision(10, 2)
@@ -304,8 +305,8 @@ namespace AppForSEII.API.Migrations
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Modelo")
                         .IsRequired()
@@ -318,8 +319,8 @@ namespace AppForSEII.API.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("PrecioKilovatioHora")
-                        .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
+                        .HasPrecision(10, 4)
+                        .HasColumnType("decimal(10,4)");
 
                     b.Property<decimal>("PrecioReserva")
                         .HasPrecision(10, 2)
@@ -346,7 +347,8 @@ namespace AppForSEII.API.Migrations
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -601,8 +603,8 @@ namespace AppForSEII.API.Migrations
 
                     b.Property<string>("DireccionFacturacion")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<DateTime>("FechaReserva")
                         .HasColumnType("datetime2");
@@ -780,8 +782,8 @@ namespace AppForSEII.API.Migrations
 
                     b.Property<string>("DireccionFacturacion")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasDiscriminator().HasValue("Cliente");
                 });
@@ -791,7 +793,7 @@ namespace AppForSEII.API.Migrations
                     b.HasOne("AppForSEII.API.Models.Cliente", "Cliente")
                         .WithMany("ComprasAccesorios")
                         .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Cliente");
@@ -824,7 +826,7 @@ namespace AppForSEII.API.Migrations
                     b.HasOne("AppForSEII.API.Models.Accesorio", "Accesorio")
                         .WithMany("LineasCompraAccesorio")
                         .HasForeignKey("AccesorioId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("AppForSEII.API.Models.CompraAccesorios", "CompraAccesorios")
@@ -889,7 +891,7 @@ namespace AppForSEII.API.Migrations
                     b.HasOne("AppForSEII.API.Models.Impresora3D", "Impresora")
                         .WithMany("LineasReserva")
                         .HasForeignKey("ImpresoraId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("AppForSEII.API.Models.ReservaImpresora", "ReservaImpresora")
@@ -908,7 +910,7 @@ namespace AppForSEII.API.Migrations
                     b.HasOne("AppForSEII.API.Models.LicenciaModelo3D", "Licencia")
                         .WithMany("Modelos3D")
                         .HasForeignKey("LicenciaId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Licencia");
